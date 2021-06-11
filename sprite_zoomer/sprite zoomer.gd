@@ -111,10 +111,12 @@ func _exit_tree():
 
 func on_popup_show(popup:ConfirmationDialog):
 	popup.resizable = true
-#	yield(get_tree(),"idle_frame")
 	var texture_rect:TextureRect = find_node_by_class(popup, "TextureRect")
 
-	texture_rect.set_meta('scale',1)
+#	texture_rect.set_meta('scale',1)
+	yield(get_tree(),"idle_frame")
+	yield(get_tree(),"idle_frame")
+	fit_scale(texture_rect)
 
 	var box: HBoxContainer = find_child_by_class(texture_rect.get_node("../../.."),'HBoxContainer')
 
@@ -188,8 +190,6 @@ func set_scale(texture_rect:TextureRect, scale:float):
 
 
 
-
-
 func on_popup_rect_changed(popup:ConfirmationDialog, texture_rect:TextureRect):
 	yield(get_tree(),"idle_frame")
 	
@@ -203,13 +203,8 @@ func on_popup_rect_changed(popup:ConfirmationDialog, texture_rect:TextureRect):
 
 
 
-
-
-
-
 func on_popup_hide(popup:ConfirmationDialog):
 	var texture_rect:TextureRect = find_node_by_class(popup, "TextureRect")
 	reset_scale(texture_rect)
-
 
 
